@@ -9,208 +9,313 @@
     :root{
       --bg:#0f1724;
       --card:#0b1220;
-      --accent:#7dd3fc;
-      --accent2:#a78bfa;
-      --glass: rgba(255,255,255,0.04)
+      --accent:#f97373;
+      --accent2:#fb9a4a;
+      --accent3:#7dd3fc;
+      --glass: rgba(255,255,255,0.06);
     }
+
     *{
       box-sizing:border-box;
-      font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,'Helvetica Neue',Arial
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,'Helvetica Neue',Arial;
     }
+
     body{
       margin:0;
       min-height:100vh;
       background:
-        linear-gradient(180deg,#071023 0%, #071a2a 60%),
-        radial-gradient(600px 300px at 10% 20%, rgba(122,85,255,0.07), transparent);
+        radial-gradient(800px 400px at 10% 10%, rgba(244,114,182,0.25), transparent),
+        radial-gradient(800px 400px at 90% 100%, rgba(56,189,248,0.24), transparent),
+        linear-gradient(180deg,#020617 0%, #020617 40%, #030712 100%);
       color:#e6eef8;
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:28px
+      padding:18px;
     }
+
     .app{
-      width:960px;
-      max-width:96%;
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      border-radius:18px;
-      padding:22px;
-      box-shadow:0 10px 30px rgba(2,6,23,0.6);
-      border:1px solid rgba(255,255,255,0.03)
+      width:100%;
+      max-width:520px;
+      background:linear-gradient(180deg, rgba(15,23,42,0.95), rgba(15,23,42,0.98));
+      border-radius:22px;
+      padding:18px 18px 14px;
+      box-shadow:0 18px 45px rgba(15,23,42,0.9);
+      border:1px solid rgba(148,163,184,0.25);
     }
+
     header{
       display:flex;
       align-items:center;
-      gap:16px;
-      margin-bottom:14px
+      gap:14px;
+      margin-bottom:12px;
     }
+
     .logo{
-      width:64px;
-      height:64px;
-      border-radius:12px;
-      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      width:58px;
+      height:58px;
+      border-radius:18px;
+      background:conic-gradient(from 160deg, var(--accent), var(--accent2), var(--accent3), var(--accent));
       display:flex;
       align-items:center;
       justify-content:center;
-      font-weight:700;
-      color:#04263b;
-      box-shadow:0 6px 20px rgba(120,63,255,0.12)
+      font-weight:800;
+      color:#0b1120;
+      box-shadow:0 10px 25px rgba(15,23,42,0.9);
+      font-size:18px;
     }
-    h1{font-size:20px;margin:0}
-    p.lead{margin:0;color:rgba(230,238,248,0.75);font-size:14px}
 
-    .grid{
-      display:grid;
-      grid-template-columns:1.4fr 0.9fr;
-      gap:18px
+    h1{
+      font-size:19px;
+      margin:0 0 4px;
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+
+    p.lead{
+      margin:0;
+      color:rgba(226,232,240,0.8);
+      font-size:13px;
     }
 
     .card{
-      background:var(--card);
-      padding:18px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,0.03)
+      background:radial-gradient(circle at top left, rgba(248,250,252,0.06), transparent 55%),
+                 var(--card);
+      padding:16px 14px 14px;
+      border-radius:18px;
+      border:1px solid rgba(148,163,184,0.25);
     }
 
     .controls{
       display:flex;
       flex-direction:column;
-      gap:10px
+      gap:8px;
+      margin-bottom:10px;
     }
-    /* Анімація: блок з ім’ям сірішає і зникає */
+
+    /* Блок імені сірішає і зникає */
     .controls-fade{
       filter: grayscale(1);
       opacity: 0;
       transition: filter 0.6s ease, opacity 0.6s ease;
     }
 
-    label{font-size:13px;color:rgba(230,238,248,0.8)}
-    input[type=text]{
-      padding:10px;
-      border-radius:10px;
-      border:1px solid rgba(255,255,255,0.08);
-      background:rgba(0,0,0,0.15);
-      color:inherit;
-      font-size:15px;
-      outline:none;
+    label{
+      font-size:12px;
+      color:rgba(226,232,240,0.9);
     }
-    input[type=text]::placeholder{color:rgba(230,238,248,0.45)}
+
+    input[type=text]{
+      padding:9px 11px;
+      border-radius:999px;
+      border:1px solid rgba(148,163,184,0.5);
+      background:rgba(15,23,42,0.9);
+      color:inherit;
+      font-size:14px;
+      outline:none;
+      width:100%;
+    }
+
+    input[type=text]::placeholder{
+      color:rgba(148,163,184,0.7);
+    }
+
     input[type=text]:focus{
-      border-color:var(--accent);
-      box-shadow:0 0 0 1px rgba(125,211,252,0.4);
+      border-color:var(--accent3);
+      box-shadow:0 0 0 1px rgba(125,211,252,0.5);
     }
 
     .btn{
       appearance:none;
       border:0;
-      padding:11px 14px;
-      border-radius:10px;
+      padding:10px 14px;
+      border-radius:999px;
       font-weight:600;
       cursor:pointer;
       transition:transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+      font-size:14px;
     }
+
     .btn-primary{
       background:linear-gradient(90deg,var(--accent),var(--accent2));
-      color:#022235;
+      color:#0b1120;
+      box-shadow:0 8px 22px rgba(15,23,42,0.75);
     }
+
     .btn-primary:hover{
       transform:translateY(-1px);
-      box-shadow:0 8px 22px rgba(15,23,42,0.8);
+      box-shadow:0 12px 28px rgba(15,23,42,0.95);
     }
+
     .btn-primary:active{
       transform:translateY(0);
-      box-shadow:none;
       opacity:0.9;
+      box-shadow:none;
     }
 
     .stage{
-      height:260px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:10px;
+      margin-top:6px;
+    }
+
+    .info-row{
+      display:flex;
+      gap:6px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .pill{
+      padding:5px 9px;
+      border-radius:999px;
+      background:rgba(15,23,42,0.9);
+      border:1px solid rgba(148,163,184,0.5);
+      font-weight:600;
+      font-size:11px;
       display:flex;
       align-items:center;
-      justify-content:center;
-      flex-direction:column;
-      gap:12px;
-      margin-top:14px;
+      gap:4px;
     }
 
     .sequence-box{
-      width:340px;
-      height:120px;
-      border-radius:14px;
+      width:100%;
+      max-width:360px;
+      min-height:96px;
+      border-radius:18px;
       background:var(--glass);
       display:flex;
       align-items:center;
       justify-content:center;
-      font-size:62px;
+      font-size:clamp(2.2rem, 9vw, 3.2rem);
       letter-spacing:8px;
-      color:rgba(255,255,255,0.95);
+      color:rgba(248,250,252,0.98);
       text-align:center;
-      border:1px solid rgba(148,163,184,0.18);
+      border:1px solid rgba(148,163,184,0.4);
+      padding:8px 10px;
+      margin-top:4px;
     }
 
     .sequence-box.small-text{
-      font-size:20px !important;
-      letter-spacing:1px !important;
-      line-height:1.2;
-      padding:10px;
+      font-size:16px !important;
+      letter-spacing:0.5px !important;
+      line-height:1.3;
     }
 
     .digit{
-      width:84px;
-      height:84px;
-      border-radius:12px;
+      width:76px;
+      height:76px;
+      border-radius:18px;
       display:flex;
       align-items:center;
       justify-content:center;
-      font-size:36px;
+      font-size:34px;
+      background:radial-gradient(circle at 20% 0%, rgba(248,250,252,0.18), transparent 60%);
     }
 
     .glow{
       animation:glow 700ms ease-in-out;
-      box-shadow:0 12px 40px rgba(125,211,252,0.18),
-                 inset 0 -8px 20px rgba(167,139,250,0.06);
+      box-shadow:0 14px 40px rgba(56,189,248,0.25),
+                 inset 0 -8px 18px rgba(248,250,252,0.04);
     }
+
     @keyframes glow{
       0%{transform:scale(0.9);opacity:0.2}
       50%{transform:scale(1.05);opacity:1}
       100%{transform:scale(1);opacity:1}
     }
 
-    .info-row{
+    .answer-row{
+      width:100%;
       display:flex;
       gap:8px;
       align-items:center;
+      margin-top:4px;
       flex-wrap:wrap;
     }
-    .pill{
-      padding:6px 10px;
-      border-radius:999px;
-      background:rgba(255,255,255,0.03);
-      font-weight:600;
-      font-size:12px;
+
+    .answer-row input{
+      flex:1 1 160px;
+    }
+
+    .answer-row button{
+      flex:0 0 92px;
     }
 
     .footer-stats{
       display:flex;
-      gap:12px;
+      gap:10px;
       margin-top:6px;
       align-items:center;
-      font-size:12px;
+      justify-content:center;
+      flex-wrap:wrap;
+      font-size:11px;
+      color:rgba(226,232,240,0.8);
     }
-    .small{font-size:13px;color:rgba(230,238,248,0.7)}
 
-    .result{font-size:16px;font-weight:700;min-height:40px}
+    .footer-stats span.value{
+      font-weight:600;
+      color:#e5e7eb;
+    }
+
+    .result{
+      font-size:14px;
+      font-weight:600;
+      margin-top:10px;
+      min-height:32px;
+      text-align:center;
+      color:rgba(248,250,252,0.95);
+    }
 
     footer.note{
-      margin-top:10px;
-      font-size:12px;
-      color:rgba(230,238,248,0.6);
-      text-align:right;
+      margin-top:8px;
+      font-size:11px;
+      color:rgba(148,163,184,0.9);
+      text-align:center;
     }
 
-    @media (max-width:880px){
-      .grid{grid-template-columns:1fr}
-      .stage{height:auto}
+    @media (max-width:480px){
+      .app{
+        padding:14px 12px 10px;
+        border-radius:18px;
+      }
+      header{
+        gap:10px;
+      }
+      .logo{
+        width:50px;
+        height:50px;
+        font-size:16px;
+        border-radius:16px;
+      }
+      h1{
+        font-size:17px;
+      }
+      p.lead{
+        font-size:12px;
+      }
+      .card{
+        padding:12px 10px 10px;
+      }
+      .sequence-box{
+        border-radius:16px;
+        min-height:86px;
+      }
+      .digit{
+        width:70px;
+        height:70px;
+        border-radius:16px;
+      }
+      .answer-row{
+        flex-direction:column;
+      }
+      .answer-row button{
+        width:100%;
+      }
     }
   </style>
 </head>
@@ -220,53 +325,44 @@
     <header>
       <div class="logo">RS</div>
       <div>
-        <h1>Переверни послідовність</h1>
-        <p class="lead">Запам’ятай цифри. Потім введи їх навпаки.</p>
+        <h1>Переверни послідовність 🎮</h1>
+        <p class="lead">Запам’ятай цифри й введи їх навпаки.</p>
       </div>
     </header>
 
-    <div class="grid">
-      <main class="card">
-        <!-- Блок імені: сіріє й зникає після старту -->
-        <div class="controls" id="controls">
-          <label>Ім’я гравця</label>
-          <input id="playerName" type="text" placeholder="Напр.: Анастасія" />
-          <button id="startBtn" class="btn btn-primary" style="margin-top:8px">Почати гру</button>
+    <main class="card">
+      <!-- Блок імені: сіріє й зникає після старту -->
+      <div class="controls" id="controls">
+        <label>Ім’я гравця</label>
+        <input id="playerName" type="text" placeholder="Наприклад, Анастасія 😊" />
+        <button id="startBtn" class="btn btn-primary" style="margin-top:4px">Почати гру</button>
+      </div>
+
+      <div class="stage">
+        <div class="info-row">
+          <div class="pill">Рівень: <span id="level">—</span></div>
+          <div class="pill">Приклад: <span id="round">—</span>/3</div>
+          <div class="pill">Довжина: <span id="len">—</span></div>
         </div>
 
-        <div class="stage">
-          <div class="info-row">
-            <div class="pill">Рівень: <span id="level">—</span></div>
-            <div class="pill">Приклад: <span id="round">—</span>/3</div>
-            <div class="pill">Довжина: <span id="len">—</span></div>
-          </div>
+        <div class="sequence-box small-text" id="display">Натисніть «Почати гру»</div>
 
-          <div class="sequence-box small-text" id="display">Натисніть «Почати»</div>
-
-          <div style="width:100%;display:flex;gap:8px;align-items:center">
-            <input id="answer" type="text" placeholder="Введіть послідовність навпаки" />
-            <button id="submitBtn" class="btn btn-primary">Ок</button>
-          </div>
-
-          <div class="footer-stats">
-            <div class="small">Гравець: <span id="player">—</span></div>
-            <div class="small">Балів: <span id="score">0</span></div>
-            <div class="small">Приклад №: <span id="exampleIndex">—</span></div>
-          </div>
+        <div class="answer-row">
+          <input id="answer" type="text" placeholder="Введіть послідовність навпаки" />
+          <button id="submitBtn" class="btn btn-primary">Ок</button>
         </div>
-      </main>
 
-      <aside class="card">
-        <strong>Результат</strong>
-        <div class="small">5 рівнів • 3 приклади</div>
-
-        <div style="margin-top:16px">
-          <div class="result" id="finalResult"></div>
+        <div class="footer-stats">
+          <div>Гравець: <span class="value" id="player">—</span></div>
+          <div>Балів: <span class="value" id="score">0</span></div>
+          <div>Приклад №: <span class="value" id="exampleIndex">—</span></div>
         </div>
-      </aside>
-    </div>
 
-    <footer class="note">Правило: ввів навпаки → +10 балів.</footer>
+        <div class="result" id="finalResult"></div>
+      </div>
+    </main>
+
+    <footer class="note">Правило просте: запам’ятай → переверни → кожна правильна відповідь = +10 балів 🧠</footer>
   </div>
 
 <!-- ===================== SCRIPT ===================== -->
@@ -451,12 +547,12 @@ function submitAnswer(){
 function showFeedback(correct, expect){
   if(correct){
     display.innerHTML = `<div style="text-align:center">
-      <div style="font-size:32px;color:#9ef3d1;font-weight:700">+10 балів</div>
-      <div class="small">Вірна відповідь: ${expect}</div>
+      <div style="font-size:24px;color:#bbf7d0;font-weight:700">+10 балів ✅</div>
+      <div class="small">Вірна послідовність: ${expect}</div>
     </div>`;
   } else {
     display.innerHTML = `<div style="text-align:center">
-      <div style="font-size:32px;color:#ff7272;font-weight:700">Помилка</div>
+      <div style="font-size:24px;color:#fecaca;font-weight:700">Помилка 😅</div>
       <div class="small">Мало бути: ${expect}</div>
     </div>`;
   }
@@ -468,13 +564,13 @@ function finishGame(){
 
   display.classList.add("small-text");
   display.innerHTML = `<div style="text-align:center">
-    <div style="font-size:26px;font-weight:800">Гру завершено</div>
+    <div style="font-size:22px;font-weight:800">Гру завершено 🎉</div>
     <div class="small">Балів: ${state.score}</div>
-    <div class="small">ПК: <b>${pk}</b> — ${levelName}</div>
+    <div class="small">Коефіцієнт обсягу пам'яті (ПК): <b>${pk}</b> — ${levelName}</div>
   </div>`;
 
   finalResultEl.textContent =
-    `${state.player}, ПК: ${pk} — ${levelName}`;
+    `${state.player}, ваш ПК: ${pk} — ${levelName}`;
 
   // У Telegram — тільки підсумок
   sendToTelegram(
