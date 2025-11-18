@@ -6,21 +6,78 @@
   <title>Переверни послідовність — гра</title>
 
   <style>
-    :root{--bg:#0f1724;--card:#0b1220;--accent:#7dd3fc;--accent2:#a78bfa;--glass: rgba(255,255,255,0.04)}
-    *{box-sizing:border-box;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,'Helvetica Neue',Arial}
-    body{margin:0;min-height:100vh;background:linear-gradient(180deg,#071023 0%, #071a2a 60%), radial-gradient(600px 300px at 10% 20%, rgba(122,85,255,0.07), transparent);color:#e6eef8;display:flex;align-items:center;justify-content:center;padding:28px}
-    .app{width:980px;max-width:96%;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:18px;padding:22px;box-shadow:0 10px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
-    header{display:flex;align-items:center;gap:16px;margin-bottom:14px}
-    .logo{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:700;color:#04263b;box-shadow:0 6px 20px rgba(120,63,255,0.12)}
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --accent:#7dd3fc;
+      --accent2:#a78bfa;
+      --glass: rgba(255,255,255,0.04)
+    }
+    *{
+      box-sizing:border-box;
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,'Helvetica Neue',Arial
+    }
+    body{
+      margin:0;
+      min-height:100vh;
+      background:
+        linear-gradient(180deg,#071023 0%, #071a2a 60%),
+        radial-gradient(600px 300px at 10% 20%, rgba(122,85,255,0.07), transparent);
+      color:#e6eef8;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:28px
+    }
+    .app{
+      width:960px;
+      max-width:96%;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:18px;
+      padding:22px;
+      box-shadow:0 10px 30px rgba(2,6,23,0.6);
+      border:1px solid rgba(255,255,255,0.03)
+    }
+    header{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      margin-bottom:14px
+    }
+    .logo{
+      width:64px;
+      height:64px;
+      border-radius:12px;
+      background:linear-gradient(135deg,var(--accent),var(--accent2));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:700;
+      color:#04263b;
+      box-shadow:0 6px 20px rgba(120,63,255,0.12)
+    }
     h1{font-size:20px;margin:0}
-    p.lead{margin:0;color:rgba(230,238,248,0.75)}
+    p.lead{margin:0;color:rgba(230,238,248,0.75);font-size:14px}
 
-    .grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
+    .grid{
+      display:grid;
+      grid-template-columns:1.4fr 0.9fr;
+      gap:18px
+    }
 
-    .card{background:var(--card);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03)}
+    .card{
+      background:var(--card);
+      padding:18px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.03)
+    }
 
-    .controls{display:flex;flex-direction:column;gap:10px}
-    /* Анімація: блок сірішає і зникає */
+    .controls{
+      display:flex;
+      flex-direction:column;
+      gap:10px
+    }
+    /* Анімація: блок з ім’ям сірішає і зникає */
     .controls-fade{
       filter: grayscale(1);
       opacity: 0;
@@ -28,16 +85,58 @@
     }
 
     label{font-size:13px;color:rgba(230,238,248,0.8)}
-    input[type=text]{padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;font-size:15px}
-    .btn{appearance:none;border:0;padding:11px 14px;border-radius:10px;font-weight:600;cursor:pointer}
-    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#022235}
+    input[type=text]{
+      padding:10px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,0.08);
+      background:rgba(0,0,0,0.15);
+      color:inherit;
+      font-size:15px;
+      outline:none;
+    }
+    input[type=text]::placeholder{color:rgba(230,238,248,0.45)}
+    input[type=text]:focus{
+      border-color:var(--accent);
+      box-shadow:0 0 0 1px rgba(125,211,252,0.4);
+    }
 
-    .stage{height:240px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px}
+    .btn{
+      appearance:none;
+      border:0;
+      padding:11px 14px;
+      border-radius:10px;
+      font-weight:600;
+      cursor:pointer;
+      transition:transform 0.12s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+    }
+    .btn-primary{
+      background:linear-gradient(90deg,var(--accent),var(--accent2));
+      color:#022235;
+    }
+    .btn-primary:hover{
+      transform:translateY(-1px);
+      box-shadow:0 8px 22px rgba(15,23,42,0.8);
+    }
+    .btn-primary:active{
+      transform:translateY(0);
+      box-shadow:none;
+      opacity:0.9;
+    }
+
+    .stage{
+      height:260px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      gap:12px;
+      margin-top:14px;
+    }
 
     .sequence-box{
-      width:320px;
+      width:340px;
       height:120px;
-      border-radius:12px;
+      border-radius:14px;
       background:var(--glass);
       display:flex;
       align-items:center;
@@ -46,6 +145,7 @@
       letter-spacing:8px;
       color:rgba(255,255,255,0.95);
       text-align:center;
+      border:1px solid rgba(148,163,184,0.18);
     }
 
     .sequence-box.small-text{
@@ -65,23 +165,53 @@
       font-size:36px;
     }
 
-    .glow{animation:glow 700ms ease-in-out;box-shadow:0 12px 40px rgba(125,211,252,0.18), inset 0 -8px 20px rgba(167,139,250,0.06)}
-    @keyframes glow{0%{transform:scale(0.9);opacity:0.2}50%{transform:scale(1.05);opacity:1}100%{transform:scale(1);opacity:1}}
+    .glow{
+      animation:glow 700ms ease-in-out;
+      box-shadow:0 12px 40px rgba(125,211,252,0.18),
+                 inset 0 -8px 20px rgba(167,139,250,0.06);
+    }
+    @keyframes glow{
+      0%{transform:scale(0.9);opacity:0.2}
+      50%{transform:scale(1.05);opacity:1}
+      100%{transform:scale(1);opacity:1}
+    }
 
-    .info-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-    .pill{padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03);font-weight:600}
+    .info-row{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .pill{
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,0.03);
+      font-weight:600;
+      font-size:12px;
+    }
 
-    .footer-stats{display:flex;gap:12px;margin-top:12px;align-items:center}
+    .footer-stats{
+      display:flex;
+      gap:12px;
+      margin-top:6px;
+      align-items:center;
+      font-size:12px;
+    }
     .small{font-size:13px;color:rgba(230,238,248,0.7)}
 
-    .result{font-size:16px;font-weight:700}
+    .result{font-size:16px;font-weight:700;min-height:40px}
 
-    .history{max-height:220px;overflow:auto;padding-right:8px}
-    .round-item{padding:8px;border-radius:8px;margin-bottom:8px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));border:1px solid rgba(255,255,255,0.02);display:flex;justify-content:space-between;align-items:center}
+    footer.note{
+      margin-top:10px;
+      font-size:12px;
+      color:rgba(230,238,248,0.6);
+      text-align:right;
+    }
 
-    footer.note{margin-top:12px;font-size:13px;color:rgba(230,238,248,0.6)}
-
-    @media (max-width:880px){.grid{grid-template-columns:1fr}}
+    @media (max-width:880px){
+      .grid{grid-template-columns:1fr}
+      .stage{height:auto}
+    }
   </style>
 </head>
 
@@ -91,31 +221,31 @@
       <div class="logo">RS</div>
       <div>
         <h1>Переверни послідовність</h1>
-        <p class="lead">Дивись числа, потім введи їх у зворотному порядку.</p>
+        <p class="lead">Запам’ятай цифри. Потім введи їх навпаки.</p>
       </div>
     </header>
 
     <div class="grid">
       <main class="card">
-        <!-- ДОДАНО id="controls" -->
+        <!-- Блок імені: сіріє й зникає після старту -->
         <div class="controls" id="controls">
-          <label>Введіть ім'я гравця</label>
-          <input id="playerName" type="text" placeholder="Ваше ім'я" />
+          <label>Ім’я гравця</label>
+          <input id="playerName" type="text" placeholder="Напр.: Анастасія" />
           <button id="startBtn" class="btn btn-primary" style="margin-top:8px">Почати гру</button>
         </div>
 
-        <div class="stage" style="margin-top:14px">
+        <div class="stage">
           <div class="info-row">
             <div class="pill">Рівень: <span id="level">—</span></div>
-            <div class="pill">Хід: <span id="round">—</span>/3</div>
-            <div class="pill">Довжина послідовності: <span id="len">—</span></div>
+            <div class="pill">Приклад: <span id="round">—</span>/3</div>
+            <div class="pill">Довжина: <span id="len">—</span></div>
           </div>
 
-          <div class="sequence-box small-text" id="display">Натисніть «Почати гру»</div>
+          <div class="sequence-box small-text" id="display">Натисніть «Почати»</div>
 
           <div style="width:100%;display:flex;gap:8px;align-items:center">
-            <input id="answer" type="text" placeholder="Введіть відповідь" />
-            <button id="submitBtn" class="btn btn-primary">Відправити</button>
+            <input id="answer" type="text" placeholder="Введіть послідовність навпаки" />
+            <button id="submitBtn" class="btn btn-primary">Ок</button>
           </div>
 
           <div class="footer-stats">
@@ -127,19 +257,16 @@
       </main>
 
       <aside class="card">
-        <strong>Прогрес</strong>
-        <div class="small">5 рівнів • 3 приклади на рівень</div>
-        <div style="margin:10px 0">Час показу: <span id="showTime">700ms</span></div>
+        <strong>Результат</strong>
+        <div class="small">5 рівнів • 3 приклади</div>
 
-        <div class="history" id="history"></div>
-
-        <div style="margin-top:12px">
+        <div style="margin-top:16px">
           <div class="result" id="finalResult"></div>
         </div>
       </aside>
     </div>
 
-    <footer class="note">Інструкція: дивіться числа по черзі та вводьте їх у зворотному порядку.</footer>
+    <footer class="note">Правило: ввів навпаки → +10 балів.</footer>
   </div>
 
 <!-- ===================== SCRIPT ===================== -->
@@ -155,7 +282,6 @@ const MAX_SCORE = LEVELS * EXAMPLES_PER_LEVEL * 10;
 
 /* Розрахунок коефіцієнта обсягу пам'яті (0–10) */
 function calcCoefficient(score){
-  // округляємо до цілого значення від 0 до 10
   let pk = Math.round((score / MAX_SCORE) * 10);
   if (pk < 0) pk = 0;
   if (pk > 10) pk = 10;
@@ -172,7 +298,14 @@ function getCoeffLabel(pk){
   return "дуже низький";
 }
 
-let state = {player:'', level:0, example:0, score:0, currentSeq:[], awaiting:false, history:[]};
+let state = {
+  player:'',
+  level:0,
+  example:0,
+  score:0,
+  currentSeq:[],
+  awaiting:false
+};
 
 /* === Елементи === */
 const playerName = document.getElementById('playerName');
@@ -185,13 +318,9 @@ const answer = document.getElementById('answer');
 const submitBtn = document.getElementById('submitBtn');
 const playerEl = document.getElementById('player');
 const scoreEl = document.getElementById('score');
-const historyEl = document.getElementById('history');
 const exampleIndexEl = document.getElementById('exampleIndex');
 const finalResultEl = document.getElementById('finalResult');
-const showTimeEl = document.getElementById('showTime');
 const controlsEl = document.getElementById('controls');
-
-showTimeEl.textContent = SHOW_MS + "ms";
 
 /* === Telegram інтеграція === */
 const BOT_TOKEN = "8533534685:AAGdAM11ExcP_ZWJZbqO7xs6d1lht3dn8oY";
@@ -217,14 +346,13 @@ function startGame(){
   state.level = 1;
   state.example = 1;
   state.score = 0;
-  state.history = [];
 
   playerEl.textContent = state.player;
   finalResultEl.textContent = '';
   updateUI();
   nextExample();
 
-  // Після введення імені блок стає сірим і зникає
+  // Після старту блок з ім'ям сіріє та зникає
   if (controlsEl){
     controlsEl.classList.add('controls-fade');
     setTimeout(() => {
@@ -237,7 +365,9 @@ function updateUI(){
   levelEl.textContent = state.level || "—";
   roundEl.textContent = state.example || "—";
   lenEl.textContent = state.level ? SEQ_LENGTHS[state.level-1] : "—";
-  exampleIndexEl.textContent = state.level ? (state.level-1)*EXAMPLES_PER_LEVEL + state.example : "—";
+  exampleIndexEl.textContent = state.level
+    ? (state.level-1)*EXAMPLES_PER_LEVEL + state.example
+    : "—";
   scoreEl.textContent = state.score;
 
   answer.disabled = !state.awaiting;
@@ -246,7 +376,10 @@ function updateUI(){
 }
 
 function nextExample(){
-  if(state.level > LEVELS){ finishGame(); return; }
+  if(state.level > LEVELS){
+    finishGame();
+    return;
+  }
 
   const len = SEQ_LENGTHS[state.level-1];
   const seq = Array.from({length:len}, ()=>random(1,9));
@@ -262,7 +395,9 @@ function nextExample(){
   });
 }
 
-function random(a,b){ return Math.floor(Math.random()*(b-a+1))+a; }
+function random(a,b){
+  return Math.floor(Math.random()*(b-a+1))+a;
+}
 
 async function playSequence(seq){
   display.classList.remove("small-text");
@@ -276,29 +411,32 @@ async function playSequence(seq){
   }
 
   display.classList.add("small-text");
-  display.textContent = "Тепер введіть відповідь";
+  display.textContent = "Введіть послідовність навпаки";
 }
 
-function wait(ms){ return new Promise(res=>setTimeout(res, ms)); }
+function wait(ms){
+  return new Promise(res=>setTimeout(res, ms));
+}
 
 function submitAnswer(){
   if(!state.awaiting) return;
 
   const raw = answer.value.trim();
-  if(!raw){ alert("Введіть відповідь!"); return; }
+  if(!raw){
+    alert("Введіть відповідь!");
+    return;
+  }
 
   const expect = state.currentSeq.slice().reverse().join('');
   const correct = raw === expect;
   if(correct) state.score += 10;
 
-  state.history.push({level:state.level, example:state.example, answer:raw, expect, correct});
-  addHistoryItem(state.history.at(-1));
-
-  /* РАНІШЕ тут надсилалися проміжні відповіді в Telegram з послідовністю.
-     ТЕПЕР ЦЕ ВИДАЛЕНО — Telegram отримує тільки фінальний результат у finishGame(). */
-
-  if(state.example < EXAMPLES_PER_LEVEL) state.example++;
-  else { state.level++; state.example = 1; }
+  if(state.example < EXAMPLES_PER_LEVEL){
+    state.example++;
+  } else {
+    state.level++;
+    state.example = 1;
+  }
 
   state.awaiting = false;
   updateUI();
@@ -313,45 +451,32 @@ function submitAnswer(){
 function showFeedback(correct, expect){
   if(correct){
     display.innerHTML = `<div style="text-align:center">
-      <div style="font-size:36px;color:#9ef3d1;font-weight:700">Правильно!</div>
-      <div class="small">Відповідь: ${expect}</div>
+      <div style="font-size:32px;color:#9ef3d1;font-weight:700">+10 балів</div>
+      <div class="small">Вірна відповідь: ${expect}</div>
     </div>`;
   } else {
     display.innerHTML = `<div style="text-align:center">
-      <div style="font-size:36px;color:#ff7272;font-weight:700">Неправильно</div>
-      <div class="small">Правильна: ${expect}</div>
+      <div style="font-size:32px;color:#ff7272;font-weight:700">Помилка</div>
+      <div class="small">Мало бути: ${expect}</div>
     </div>`;
   }
 }
 
-function addHistoryItem(it){
-  const el = document.createElement("div");
-  el.className = "round-item";
-  el.innerHTML = `
-    <div>Рівень ${it.level} • приклад ${it.example}</div>
-    <div style="text-align:right">
-      <div style="font-weight:700">${it.correct?'✔':'✖'} ${it.answer}</div>
-      <div class="small">правильно: ${it.expect}</div>
-    </div>
-  `;
-  historyEl.prepend(el);
-}
-
 function finishGame(){
-  const pk = calcCoefficient(state.score);          // коефіцієнт 0–10
-  const levelName = getCoeffLabel(pk);              // словесний рівень
+  const pk = calcCoefficient(state.score);
+  const levelName = getCoeffLabel(pk);
 
   display.classList.add("small-text");
   display.innerHTML = `<div style="text-align:center">
-    <div style="font-size:28px;font-weight:800">Гру завершено</div>
+    <div style="font-size:26px;font-weight:800">Гру завершено</div>
     <div class="small">Балів: ${state.score}</div>
-    <div class="small">Коефіцієнт обсягу пам'яті (ПК): <b>${pk}</b> — ${levelName}</div>
+    <div class="small">ПК: <b>${pk}</b> — ${levelName}</div>
   </div>`;
 
   finalResultEl.textContent =
-    `${state.player}, ваш коефіцієнт обсягу пам'яті (ПК): ${pk} — ${levelName}`;
+    `${state.player}, ПК: ${pk} — ${levelName}`;
 
-  /* Підсумок у Telegram вже у вигляді коефіцієнта — ЄДИНЕ повідомлення */
+  // У Telegram — тільки підсумок
   sendToTelegram(
     `🏁 <b>Гру завершено</b>\n` +
     `👤 ${state.player}\n` +
@@ -368,4 +493,3 @@ display.classList.add("small-text");
 
 </body>
 </html>
-
